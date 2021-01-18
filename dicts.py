@@ -156,6 +156,8 @@ def translate_to_pirate_talk(phrase):
     is          be
     ----------  ----------------
 
+
+
     For example::
 
         >>> translate_to_pirate_talk("my student is not a man")
@@ -168,7 +170,32 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+# create the dictionary
+    pirate_dict = {"sir": "matey",
+                    "hotel": "fleabag inn",
+                    "student": "swabbie",
+                    "man": "matey",
+                    "professor": "foul blaggart",
+                    "restaurant": "galley",
+                    "your": "yer",
+                    "excuse": "arr",
+                    "students": "swabbies",
+                    "are": "be",
+                    "restroom": "head",
+                    "my": "me",
+                    "is": "be"}
+
+# name the parts of the dictionary with '.items()'
+    for english_word, pirate_word in pirate_dict.items():
+        # look for dict keys
+        if english_word in phrase:
+            # replace the word and keep the structure of the phrase
+            phrase = phrase.replace(english_word, pirate_word)
+    return phrase
+
+# - test -
+# print(translate_to_pirate_talk("Look at your hotel room, man! The restroom resembles a student restaurant!! What is your excuse?"))
+
 
 
 def kids_game(names):
