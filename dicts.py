@@ -244,4 +244,30 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    ### I DID NOT FIGURE THIS OUT.
+    ### You can see a little bit of code here.
+
+    dict_letters = {}
+    # for name in names:
+    #     first_letter = name[0]
+    #     last_letter = name[-1]
+    for name in names:
+        dict_letters[name] = name[0], name[-1]    
+
+    matching_names = [names[0]]
+    for name in names:
+        if name.startswith(matching_names[-1][-1]):
+            matching_names.append(name)
+               
+    # print(matching_names)        
+    
+    # - test -
+    # print(dict_letters)
+    # result of print call is 
+    #     {'bagon': ('b', 'n'), 'baltoy': ('b', 'y'), 
+    #      'yamask': ('y', 'k'), 'starly': ('s', 'y'), 
+    #      'nosepass': ('n', 's'), 'kalob': ('k', 'b'), 'nicky': ('n', 'y')}
+    # - end test -
+
+names = ["bagon", "baltoy", "yamask", "starly", "nosepass", "kalob", "nicky", "booger"]
+kids_game(names)
