@@ -74,6 +74,10 @@ class Road:
         self.num_lanes = num_lanes
         self.speed_limit = speed_limit
 
+#no self needed
+#num_lanes = 2
+#speed limit = 25
+
 #instantiate road_1 and road_2
 road_1 = Road()
 road_2 = Road()
@@ -85,6 +89,8 @@ road_1 = Road(4, 60)
 # print(road_1.num_lanes)
 # print(road_1.speed_limit)
 
+
+
 """3. Update Password"""
 
 
@@ -94,13 +100,15 @@ class User:
     def __init__(self, username, password):
         """Create a user with the given username and password."""
 
-        self.username = username
+        self.username = username 
         self.password = password
+    # this could be self.username = login_name -- 
+    # and "login_name" would be up there in the init instead of username   
 
     def update_password(self, current_password, new_password): 
         """Create a new password after entering current password."""
 
-        if self.password == current_password:
+        if self.password == current_password: #better to switch these -- seems more syntactical
             self.password = new_password    
         else:
             print('Invalid password')
@@ -115,4 +123,54 @@ class User:
 # #- end of test -
 
 
-### from here on is not complete yet!
+
+# """4. Build a Library"""
+
+
+class Book:
+    """Create a Book object."""
+
+    def __init__(self, title, author):
+        """Instantiate a book with the given title and author."""
+
+        self.title = title
+        self.author = author
+
+    # see what we've got
+    def __repr__(self):
+        return f'"{self.title}" by {self.author}'
+
+# -- test --
+# book1 = Book("Experience", "Eliasson")
+# print(book1)
+# -- end of test --
+
+class Library:
+# class Library:    
+    """A collection of books."""
+
+    # no attributes passed in; instantiate an empty list
+    def __init__(self): 
+        """Create a book with the given title and author."""
+
+        self.books = []
+
+    def create_and_add_book(self, title, author):
+        """Make a Book object and append it to books list,
+            i.e. add to Library."""
+        
+        self.books.append(Book(title, author))
+
+    # list the books in this instance of the library
+    def __repr__(self):    
+        return f"In my library you'll find: {self.books}"
+
+# -- test --
+# my_library = Library()
+# my_library.create_and_add_book("Expo", "Larson")
+# my_library.create_and_add_book("Gene", "Mukherjee")
+# my_library.create_and_add_book("Experience", "Eliasson")
+# print(my_library)
+# -- end of test --
+
+### Prompt 5 still remaining
