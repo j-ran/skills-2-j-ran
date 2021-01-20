@@ -167,4 +167,35 @@ class Library:
 # print(my_library)
 # -- end of test --
 
-### Prompt 5 still remaining
+
+
+"""5. Rectangle"""
+
+
+class Rectangle:
+    """A rectangle."""
+
+    def __init__(self, length, width):
+        """Create a rectangle with the given length and width."""
+
+        self.length = float(length)
+        self.width = float(width)
+
+    def calculate_area(self):
+        """Return the area of the rectangle."""
+
+        return self.length * self.width
+
+
+class Square(Rectangle):
+    """A particular kind of rectangle."""
+
+    def __init__(self, length):
+        """Create a rectangle with the same length and width."""
+
+        super().__init__(length, length)
+
+# - test -
+# a_square = Square(4)
+# print(a_square.calculate_area())
+# - end of test -   
