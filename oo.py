@@ -74,10 +74,6 @@ class Road:
         self.num_lanes = num_lanes
         self.speed_limit = speed_limit
 
-#no self needed
-#num_lanes = 2
-#speed limit = 25
-
 #instantiate road_1 and road_2
 road_1 = Road()
 road_2 = Road()
@@ -101,14 +97,12 @@ class User:
         """Create a user with the given username and password."""
 
         self.username = username 
-        self.password = password
-    # this could be self.username = login_name -- 
-    # and "login_name" would be up there in the init instead of username   
+        self.password = password   
 
     def update_password(self, current_password, new_password): 
         """Create a new password after entering current password."""
 
-        if self.password == current_password: #better to switch these -- seems more syntactical
+        if current_password == self.password: 
             self.password = new_password    
         else:
             print('Invalid password')
@@ -124,7 +118,7 @@ class User:
 
 
 
-# """4. Build a Library"""
+"""4. Build a Library"""
 
 
 class Book:
