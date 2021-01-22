@@ -128,7 +128,6 @@ def print_melon_at_price(price):
 # print_melon_at_price('3.25')
 
 
-
 def translate_to_pirate_talk(phrase):
     """Translate phrase to pirate talk.
 
@@ -185,17 +184,58 @@ def translate_to_pirate_talk(phrase):
                     "my": "me",
                     "is": "be"}
 
+# attempt_01
+# This doesn't work because a small word like "is" could get
+# incorrectly replaced
 # name the parts of the dictionary with '.items()'
-    for english_word, pirate_word in pirate_dict.items():
-        # look for dict keys
-        if english_word in phrase:
-            # replace the word and keep the structure of the phrase
-            phrase = phrase.replace(english_word, pirate_word)
-    return phrase
+    # for english_word, pirate_word in pirate_dict.items():
+    #     # look for dict keys
+    #     if english_word in phrase:
+    #         # replace the word and keep the structure of the phrase
+    #         phrase = phrase.replace(english_word, pirate_word)
+    # return phrase
+
+# attempt_02
+# everything works; trying to deal with punctuation
+
+    words = phrase.rstrip().split()
+    puncs = ["!", "?"]
+
+#make an empty list
+    clean_list = []
+    for word in words:
+        clean_list.append(word)
+        # if char in words has punc - THIS IS NOT IDEAL, THE CODE IS WET ...
+        for punc in puncs:
+            if punc in word:
+            # the following is to create two list items,
+            # an item of the word and an item of its punctuation, 
+            # to replace the single item of "word+punctuation"  
+                word_clean = word.replace("!", " ").replace('?',' ').split()
+                word_plus = word_clean[0]
+                clean_list.pop()
+                clean_list.append(word_plus)
+                clean_list.append(punc)  
+    #print(clean_list)
+    
+    #now we are ready to translate! 
+    #make empty list
+    translation = []
+    for word in clean_list:
+        if word not in pirate_dict.keys():
+            translation.append(word)
+        else:
+            translation.append(pirate_dict.get(word))  
+    
+    #print(translation)
+
+    complete_trans = " ".join(translation)
+    return complete_trans   
+
 
 # - test -
-# print(translate_to_pirate_talk("Look at your hotel room, man! The restroom resembles a student restaurant!! What is your excuse?"))
-
+print(translate_to_pirate_talk("What is this hotel room, man! The restroom resembles a student restaurant! What is your excuse?"))
+# note: ALMOST there. The punctuation has spaces around it. I am stopping here, though.
 
 
 def kids_game(names):
