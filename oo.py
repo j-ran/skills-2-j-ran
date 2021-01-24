@@ -192,10 +192,15 @@ class Square(Rectangle):
 
     def __init__(self, length):
         """Create a rectangle with the same length and width."""
-
+        # call the Superclass and make both dimensions equal to length 
         super().__init__(length, length)
 
+
 # - test -
-# a_square = Square(4)
-# print(a_square.calculate_area())
+# instantiate a Square
+a_square = Square(4)
+# check that it has a width, inherited from Rectangle
+print(a_square.width)
+# calculate area of Square, a method inherited from Rectangle
+print(a_square.calculate_area())
 # - end of test -   
