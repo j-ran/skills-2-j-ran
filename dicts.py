@@ -234,8 +234,9 @@ def translate_to_pirate_talk(phrase):
 
 
 # - test -
-print(translate_to_pirate_talk("What is this hotel room, man! The restroom resembles a student restaurant! What is your excuse?"))
-# note: ALMOST there. The punctuation has spaces around it. I am stopping here, though.
+# print(translate_to_pirate_talk("What is this hotel room, man? The restroom resembles a student restaurant! What is your excuse?"))
+# result of print statement is: "What be this fleabag inn room, matey ? The head resembles a swabbie galley ! What be yer arr ?"
+# note: ALMOST there. The punctuation has spaces around it. I am stopping here, though, as that is not a dicitonary problem.
 
 
 def kids_game(names):
@@ -284,30 +285,42 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    ### I DID NOT FIGURE THIS OUT.
-    ### You can see a little bit of code here.
-
-    dict_letters = {}
-    # for name in names:
-    #     first_letter = name[0]
-    #     last_letter = name[-1]
+    first_letters_dict = {}
+    game_answers = [names.pop(0)]
+        
     for name in names:
-        dict_letters[name] = name[0], name[-1]    
+        # create keys from the unique first letters of the names list
+        if name[0] not in first_letters_dict:
+            first_letters_dict[name[0]] = [name]
 
-    matching_names = [names[0]]
-    for name in names:
-        if name.startswith(matching_names[-1][-1]):
-            matching_names.append(name)
-               
-    # print(matching_names)        
-    
-    # - test -
-    # print(dict_letters)
-    # result of print call is 
-    #     {'bagon': ('b', 'n'), 'baltoy': ('b', 'y'), 
-    #      'yamask': ('y', 'k'), 'starly': ('s', 'y'), 
-    #      'nosepass': ('n', 's'), 'kalob': ('k', 'b'), 'nicky': ('n', 'y')}
-    # - end test -
+        else:
+            # add the name to the dictionary 
+            # as an additional value of its initial letter
+            first_letters_dict[name[0]].append(name)
+        
 
+        # the following statement could also be 'while True:'
+        # it means "while the key returns a value other than None"
+        # in other words, so long as the key exists, or, in this case, 
+        # so long as there is name in names so that there is a name[0]
+        while first_letters_dict[name[0]]: 
+            # use the last letter of the last answer
+            # to get the value of the next answer
+            start_letter = game_answers[-1][-1]
+            # this checks that there are values 
+            # other than None at start-letter key
+            # if nothing is there, the function will break
+            if not first_letters_dict.get(start_letter):
+                print(f'Checking eligible values ...')
+                break
+            print(f"Then start w/ '{start_letter}' ...")
+            # take the first value at the key out of the dictionary
+            answer = first_letters_dict[start_letter].pop(0)
+            print(f"Add {answer}.")
+            game_answers.append(answer)
+    print(f'Game answers are: {game_answers}.') 
+
+names1 = ["apple", "berry", "cherry"]
+names2 = ["noon", "naan", "nun"]
 names = ["bagon", "baltoy", "yamask", "starly", "nosepass", "kalob", "nicky", "booger"]
 kids_game(names)

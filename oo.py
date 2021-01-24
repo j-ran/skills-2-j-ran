@@ -139,6 +139,7 @@ class Book:
 # print(book1)
 # -- end of test --
 
+
 class Library:
 # class Library:    
     """A collection of books."""
@@ -147,24 +148,30 @@ class Library:
     def __init__(self): 
         """Create a book with the given title and author."""
 
-        self.books = []
-
+        self.books = {}
+#### shoot, I got stuck here again!!!!
     def create_and_add_book(self, title, author):
         """Make a Book object and append it to books list,
             i.e. add to Library."""
         
-        self.books.append(Book(title, author))
-
+        self.books[author] = title
+        # self.books.append(Book(title, author))
+        # bookshelf = {books}
+        print(self.books[author])
+        # bookshelf[author] = title
+        # sorted_bookshelf = sorted(bookshelf)
+        # print(sorted_bookshelf)
     # list the books in this instance of the library
     def __repr__(self):    
-        return f"In my library you'll find: {self.books}"
+        return f"My library is organized by author: {self.books}"
 
+# note :: did not alphabetize by author
 # -- test --
-# my_library = Library()
-# my_library.create_and_add_book("Expo", "Larson")
-# my_library.create_and_add_book("Gene", "Mukherjee")
-# my_library.create_and_add_book("Experience", "Eliasson")
-# print(my_library)
+my_library = Library()
+my_library.create_and_add_book("Expo", "Larson")
+my_library.create_and_add_book("Gene", "Mukherjee")
+my_library.create_and_add_book("Experience", "Eliasson")
+print(my_library)
 # -- end of test --
 
 
