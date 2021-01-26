@@ -120,7 +120,6 @@ class User:
 
 """4. Build a Library"""
 
-
 class Book:
     """Create a Book object."""
 
@@ -132,46 +131,71 @@ class Book:
 
     # see what we've got
     def __repr__(self):
-        return f'"{self.title}" by {self.author}'
+        return f'"{self.title}" – {self.author}'
 
 # -- test --
-# book1 = Book("Experience", "Eliasson")
+book1 = Book("Experience", "Eliasson")
 # print(book1)
 # -- end of test --
 
+#
+# ##
+# INSTRUCTIONS:
+# We have given you a class, Book. 
+# You’ll use it build a new Library class. 
+# Your Library class needs to meet these specifications:
+#   Each Library object needs an instance attribute called books 
+#   which starts off as an empty list.
+# We also need two methods:
+#     create_and_add_book, 
+#     which takes in the title and author of a book (as strings). 
+#     It should instantiate a Book object 
+#     and add it to the Library’s books list
 
-class Library:
+#     find_books_by_author, 
+#     which takes in an author’s name (as a string) 
+#     and returns a list of all books by that author
+###
+
+class Library():
 # class Library:    
     """A collection of books."""
 
-    # no attributes passed in; instantiate an empty list
-    def __init__(self): 
-        """Create a book with the given title and author."""
-
+    # make a booklist for the Library
+    # instantiate a collection
+    def __init__(self):     
         self.books = {}
-#### shoot, I got stuck here again!!!!
-    def create_and_add_book(self, title, author):
-        """Make a Book object and append it to books list,
-            i.e. add to Library."""
-        
-        self.books[author] = title
-        # self.books.append(Book(title, author))
-        # bookshelf = {books}
-        print(self.books[author])
-        # bookshelf[author] = title
-        # sorted_bookshelf = sorted(bookshelf)
-        # print(sorted_bookshelf)
-    # list the books in this instance of the library
-    def __repr__(self):    
-        return f"My library is organized by author: {self.books}"
 
-# note :: did not alphabetize by author
-# -- test --
+    def create_and_add_book(self, title, author):
+        # instantiate a Book Class object
+        # a_book = Book(title, author)
+        # use the author to create a list and add the title to the list
+        self.books.setdefault(author, []) # setdefault makes a key and value
+        self.books[author].append(title)
+ 
+        print(f'The new book is {title} by {author}. All books are: {self.books}')
+
+    def find_books_by_author(self, author): 
+        # check if author is in the keys
+        if author in self.books:
+            return self.books[author]
+        print(f"We don't have anything by {author}!")  
+        
+        # this is one way to alphabetize the dict:
+        # sorted_books = sorted(self.books.items())
+        # return sorted_books
+        # lambda function is easier
+
+
+### test ###
 my_library = Library()
 my_library.create_and_add_book("Expo", "Larson")
-my_library.create_and_add_book("Gene", "Mukherjee")
-my_library.create_and_add_book("Experience", "Eliasson")
-print(my_library)
+# print(my_library)
+# my_library.__dict__ - this is dunder dict, to see the object in a dict
+# my_library.create_and_add_book("Expo", "Larson")
+# my_library.create_and_add_book("Gene", "Mukherjee")
+# my_library.create_and_add_book("Experience", "Eliasson")
+# print(my_library)
 # -- end of test --
 
 
