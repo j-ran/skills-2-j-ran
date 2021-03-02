@@ -11,6 +11,8 @@ listed inside a class to use it;
 you can call the object without needing to know
 what is "encapsulated" in the object.
 
+INHERITANCE. You can pass attributes to objects via classes.
+
 POLYMORPHISM. You can make different types of the same thing; 
 more than one kind of class, for instance, – 
 as in a Superclass and subclasses. 
@@ -23,6 +25,8 @@ A Class is a grouping that has attributes;
 it can also specify that you do things with methods;
 each instance of the Class has the attributes of that Class.
 You name Classes with Capitals.
+They are defined with the parameter 'self', which instantiates them.
+'Self' beings a Class instance into being. 
 
 
 
@@ -68,18 +72,16 @@ dog
 
 """2. Road Class"""
 
-class Road:
-    def __init__(self, num_lanes = 2, speed_limit = 25):
-        """Create a road with defined attributes."""
-        self.num_lanes = num_lanes
-        self.speed_limit = speed_limit
-
+class Road():
+    num_lanes=2
+    speed_limit=25
+    
 #instantiate road_1 and road_2
 road_1 = Road()
 road_2 = Road()
 
-#update road_1
-road_1 = Road(4, 60)
+road_1.num_lanes = 4
+road_1.speed_limit = 60
 
 # - test -
 # print(road_1.num_lanes)
@@ -173,7 +175,7 @@ class Library():
         self.books.setdefault(author, []) # setdefault makes a key and value
         self.books[author].append(title)
  
-        print(f'The new book is {title} by {author}. All books are: {self.books}')
+        print(f'The new book is {title} by {author}. The library currently contains: {self.books}')
 
     def find_books_by_author(self, author): 
         # check if author is in the keys
@@ -188,8 +190,8 @@ class Library():
 
 
 ### test ###
-my_library = Library()
-my_library.create_and_add_book("Expo", "Larson")
+# my_library = Library()
+# my_library.create_and_add_book("Expo", "Larson")
 # print(my_library)
 # my_library.__dict__ - this is dunder dict, to see the object in a dict
 # my_library.create_and_add_book("Expo", "Larson")
@@ -214,24 +216,36 @@ class Rectangle:
 
     def calculate_area(self):
         """Return the area of the rectangle."""
-
+        
         return self.length * self.width
 
 
 class Square(Rectangle):
     """A particular kind of rectangle."""
 
-    def __init__(self, length):
-        """Create a rectangle with the same length and width."""
-        # call the Superclass and make both dimensions equal to length 
-        super().__init__(length, length)
+    def __init__(self, length, width):
+        """Inherit the definition from Rectangle."""
+        # call the Superclass; super is a method and needs ()
+        super().__init__(length, width)
 
+    def calculate_sq_area(self):
+        print("self.length", self.length)
+        print("self.width", self.width)
+        if self.length == self.width:
+            return super().calculate_area() # this needs to returned EXPLICITLY
+        
+        else:
+            print('Invalid Square')  
+            None  
 
-# - test -
-# instantiate a Square
-a_square = Square(4)
-# check that it has a width, inherited from Rectangle
-print(a_square.width)
-# calculate area of Square, a method inherited from Rectangle
-print(a_square.calculate_area())
+### TESTS ###
+rect_1 = Rectangle(3,4)
+print('**obj', rect_1)
+print('len', rect_1.length)
+print('w', rect_1.width)
+print('area', rect_1.calculate_area())
+
+square1 = Square(4, 4)
+print('sq_area', square1.calculate_sq_area())
+
 # - end of test -   
