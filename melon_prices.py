@@ -1,3 +1,5 @@
+"""This function is to address the fact that, previously, the prices were passed in as a string. Now they are passed in as floats."""
+
 def print_melon_at_price(price):
     """Given a price, print all melons available at that price, in alphabetical order.
     Here are a list of melon names and prices:
